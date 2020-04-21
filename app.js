@@ -34,7 +34,7 @@ function createManager () {
             name: "office",
             message: "What is your manager's office number?"
         }
-    ])
+    ])///Answers???
     // .then(function (answers) {
     //     const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
     //     teamMembers.push(manager);
@@ -42,10 +42,10 @@ function createManager () {
     // });
 }
 createManager();
-///Answers???
 
 
-//Engineer Questions
+
+//ENGINEER QUESTIONS
 function createEngineer () {
     inquirer.prompt([
         {
@@ -72,6 +72,31 @@ function createEngineer () {
     ])
 
 }
+//INTERN QUESTIONS
+function createIntern () {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is your intern's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your intern's id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your intern's email?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is your intern's school?"
+        }
+
+    ])
 
 
 // Write code to use inquirer to gather information about the development team members,
