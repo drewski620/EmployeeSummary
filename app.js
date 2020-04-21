@@ -5,12 +5,12 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRenderer");
 
-
+const teamMembers= [];
 //manger questions
 function createManager () {
     inquirer.prompt([
@@ -35,11 +35,43 @@ function createManager () {
             message: "What is your manager's office number?"
         }
     ])
+    // .then(function (answers) {
+    //     const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
+    //     teamMembers.push(manager);
+    //     addMember();
+    // });
+}
+createManager();
+///Answers???
 
-        ///Answers???
 
+//Engineer Questions
+function createEngineer () {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is your engineer's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your engineer's id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your engineer's email?"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is your engineer's github?"
+        }
 
+    ])
 
+}
 
 
 // Write code to use inquirer to gather information about the development team members,
