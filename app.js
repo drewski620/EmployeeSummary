@@ -28,53 +28,47 @@ inquirer.prompt([
     },   
     {
         type: "input",
-        name: "id",
+        name: "managerId",
         message: "What is your manager's id?"
     },
     {
         type: "input",
-        name: "email",
+        name: "managerEmail",
         message: "What is your manager's email?"
     },
     {
         type: "input",
-        name: "office",
+        name: "managerOfficeNumber",
         message: "What is your manager's office number?"
     }
 
     
-])
-// //manger questions
-// function createManager () {
-//     inquirer.prompt([
-//         {
-//             type: "input",
-//             name: "name",
-//             message: "What is your manager's name?"
-//         },
-//         {
-//             type: "input",
-//             name: "id",
-//             message: "What is your manager's id?"
-//         },
-//         {
-//             type: "input",
-//             name: "email",
-//             message: "What is your manager's email?"
-//         },
-//         {
-//             type: "input",
-//             name: "office",
-//             message: "What is your manager's office number?"
-//         }
-//     ])///Answers???
-//     .then(function (answers) {
-//         const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
-//         teamMembers.push(manager);
-//         addMember();
-//     });
-// }
-// createManager();
+]).then(function (answers) {
+    var manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+    createTeam();
+});
+
+function createTeam() {
+
+}
+function createEngineer() {
+    inquirer.prompt([
+        {
+        type: "input",
+        name: "engineerName",
+        message: "Enter the enginer's name:"
+        },
+        {
+            type: "input",
+            name: 'engineerId',
+            message: "Please enter the engineer's id: "
+        }
+    ])
+}
+function createIntern() {
+
+}
+
 
 
 
