@@ -12,7 +12,7 @@ const render = require("./lib/htmlRenderer");
 
 
 
-const teamMembers = [];
+const employeeArray = [];
 
 //Ask about the manager
 inquirer.prompt([
@@ -46,13 +46,12 @@ inquirer.prompt([
     
 ]).then(function (answers) {
     var manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-    createTeam();
+    employeeArray.push(manager)
+    addEmployee();
 });
 
 
-function createTeam() {
 
-}
 
 
 //ASK ABOUT THE ENGINEER
@@ -80,7 +79,8 @@ function createEngineer() {
         }
     ]).then(function (answers) {
         var engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-        createTeam();
+        employeeArray.push(engineer);
+        addEmployee();
     });
 }
 
@@ -110,8 +110,37 @@ function createIntern() {
 
     ]).then(function (answers) {
         var intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-        createTeam();
+        employeeArray.push(intern);
+        addEmployee();
     });
+}
+
+function addEmployee(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "memberChoice",
+            message: "Do you want to enter another team member?",
+            choices: [
+                "Engineer",
+                "Intern",
+                "I don't want to add any more team members"
+            ]
+        }
+    ]).then(function(answers){
+        switch (answers.memberChoice){ 
+            case "Engineer":
+                createEngineer();
+                break;
+            case "Intern":
+                createIntern();
+                break;
+            default:
+                fs.writeFile('./team.html' , render(employeeArray), function(err){
+                    if (err) throw err
+                })
+        }
+    })
 }
 
 
