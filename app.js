@@ -13,6 +13,7 @@ const render = require("./lib/htmlRenderer");
 
 
 const teamMembers = [];
+
 //Ask about the manager
 inquirer.prompt([
     {
@@ -48,9 +49,13 @@ inquirer.prompt([
     createTeam();
 });
 
+
 function createTeam() {
 
 }
+
+
+//ASK ABOUT THE ENGINEER
 function createEngineer() {
     inquirer.prompt([
         {
@@ -62,68 +67,55 @@ function createEngineer() {
             type: "input",
             name: 'engineerId',
             message: "Please enter the engineer's id: "
+        },
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "What is your engineer's email?"
+        },
+        {
+            type: "input",
+            name: "engineerGithub",
+            message: "What is your engineer's github?"
         }
-    ])
+    ]).then(function (answers) {
+        var engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+        createTeam();
+    });
 }
+
+//ASK ABOUT THE INTERN
 function createIntern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is your intern's name?"
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "What is your intern's id?"
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is your intern's email?"
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What is your intern's school?"
+        }
 
+    ]).then(function (answers) {
+        var intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        createTeam();
+    });
 }
 
 
 
 
-// //ENGINEER QUESTIONS
-// function createEngineer () {
-//     inquirer.prompt([
-//         {
-//             type: "input",
-//             name: "name",
-//             message: "What is your engineer's name?"
-//         },
-//         {
-//             type: "input",
-//             name: "id",
-//             message: "What is your engineer's id?"
-//         },
-//         {
-//             type: "input",
-//             name: "email",
-//             message: "What is your engineer's email?"
-//         },
-//         {
-//             type: "input",
-//             name: "github",
-//             message: "What is your engineer's github?"
-//         }
-
-//     ])
-
-// }
-// //INTERN QUESTIONS
-// function createIntern () {
-//     inquirer.prompt([
-//         {
-//             type: "input",
-//             name: "name",
-//             message: "What is your intern's name?"
-//         },
-//         {
-//             type: "input",
-//             name: "id",
-//             message: "What is your intern's id?"
-//         },
-//         {
-//             type: "input",
-//             name: "email",
-//             message: "What is your intern's email?"
-//         },
-//         {
-//             type: "input",
-//             name: "school",
-//             message: "What is your intern's school?"
-//         }
-
-//     ])
-// };
 
 
